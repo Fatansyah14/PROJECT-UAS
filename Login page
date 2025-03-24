@@ -1,0 +1,114 @@
+import React from 'react';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.brandText}>AyoBlajar</Text>
+      
+      <TextInput style={styles.input} placeholder="user name" placeholderTextColor="#666" />
+      <TextInput style={styles.input} placeholder="Password" placeholderTextColor="#666" secureTextEntry />
+      
+      <TouchableOpacity style={styles.loginButton}>
+        <Text style={styles.loginButtonText}>Masuk</Text>
+      </TouchableOpacity>
+      
+      <Text style={styles.registerText}>
+        Belum punya akun? <Text style={styles.registerLink}>Daftar</Text>
+      </Text>
+      
+      <View style={styles.dividerContainer}>
+        <View style={styles.divider} />
+        <Text style={styles.orText}>OR</Text>
+        <View style={styles.divider} />
+      </View>
+      
+      <TouchableOpacity style={styles.socialButton}>
+        <Image source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' }} style={styles.icon} />
+        <Text style={styles.socialButtonText}>Masuk dengan google</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity style={styles.socialButton}>
+        <Image source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/6/6b/Phone_icon.png' }} style={styles.icon} />
+        <Text style={styles.socialButtonText}>Masuk dengan no Hp</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#14124F',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  brandText: {
+    color: 'white',
+    fontSize: 26,
+    fontWeight: 'bold',
+    marginBottom: 40,
+  },
+  input: {
+    width: '100%',
+    backgroundColor: 'white',
+    padding: 12,
+    borderRadius: 10,
+    marginBottom: 15,
+  },
+  loginButton: {
+    backgroundColor: '#F7A600',
+    paddingVertical: 12,
+    width: '100%',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  loginButtonText: {
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  registerText: {
+    color: 'white',
+    marginTop: 10,
+  },
+  registerLink: {
+    color: '#F7A600',
+    fontWeight: 'bold',
+  },
+  dividerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  divider: {
+    flex: 1,
+    height: 1,
+    backgroundColor: 'white',
+  },
+  orText: {
+    color: 'white',
+    marginHorizontal: 10,
+  },
+  socialButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    paddingVertical: 12,
+    width: '100%',
+    borderRadius: 10,
+    marginTop: 10,
+  },
+  socialButtonText: {
+    fontSize: 16,
+    color: 'black',
+    fontWeight: 'bold',
+    marginLeft: 10,
+  },
+  icon: {
+    width: 24,
+    height: 24,
+    marginLeft: 10,
+  },
+});
