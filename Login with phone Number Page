@@ -1,0 +1,72 @@
+import React, { useState } from 'react';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+
+export default function App() {
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.brandText}>AyoBlajar</Text>
+      </View>
+      
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.countryCode}
+          value={'+62'}
+          editable={false}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="your number"
+          placeholderTextColor="#666"
+          keyboardType="phone-pad"
+          value={phoneNumber}
+          onChangeText={setPhoneNumber}
+        />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#14124F',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  header: {
+    backgroundColor: '#14124F',
+    width: '100%',
+    alignItems: 'center',
+    paddingVertical: 40,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+  },
+  brandText: {
+    color: 'white',
+    fontSize: 26,
+    fontWeight: 'bold',
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    marginTop: 20,
+  },
+  countryCode: {
+    padding: 12,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'black',
+  },
+  input: {
+    flex: 1,
+    padding: 12,
+    fontSize: 16,
+  },
+});
