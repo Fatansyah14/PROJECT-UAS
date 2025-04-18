@@ -1,0 +1,73 @@
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
+export default function ProfileScreen() {
+  return (
+    <View style={styles.container}>
+      {/* Header Biru */}
+      <View style={styles.header} />
+
+      {/* Card Profil */}
+      <View style={styles.profileCard}>
+        <View style={styles.avatarContainer}>
+          <Ionicons name="person-circle-outline" size={80} color="black" />
+        </View>
+
+        {/* Menu List */}
+        <MenuItem icon="person-outline" label="Edit Profile" />
+        <MenuItem icon="heart-outline" label="Video yang disukai" />
+        <MenuItem icon="lock-closed-outline" label="Ganti Password" />
+        <MenuItem icon="log-out-outline" label="Keluar" />
+      </View>
+    </View>
+  );
+}
+
+const MenuItem = ({ icon, label }) => (
+  <TouchableOpacity style={styles.menuItem}>
+    <View style={styles.menuLeft}>
+      <Ionicons name={icon} size={24} color="black" />
+      <Text style={styles.menuText}>{label}</Text>
+    </View>
+    <Ionicons name="chevron-forward-outline" size={24} color="black" />
+  </TouchableOpacity>
+);
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#1e1965' }, // warna biru tua
+  header: { height: 100 },
+  profileCard: {
+    flex: 1,
+    backgroundColor: '#d9d9d9',
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    paddingTop: 50,
+    paddingHorizontal: 20,
+  },
+  avatarContainer: {
+    position: 'absolute',
+    top: -40,
+    left: '50%',
+    transform: [{ translateX: -40 }],
+    backgroundColor: '#d9d9d9',
+    borderRadius: 50,
+    padding: 5,
+  },
+  menuItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: 18,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+  },
+  menuLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  menuText: {
+    fontSize: 16,
+    marginLeft: 12,
+  },
+});
