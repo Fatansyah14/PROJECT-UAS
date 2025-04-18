@@ -1,0 +1,107 @@
+import React, { useRef, useState } from 'react';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native';
+
+export default function OTPVerification() {
+  const [otp, setOtp] = useState(['', '', '', '']);
+  const inputs = useRef([]);
+
+  const handleChange = (text, index) => {
+    if (text.length > 1) return;
+    const newOtp = [...otp];
+    newOtp[index] = text;
+    setOtp(newOtp);
+
+    // auto focus
+    if (text && index < 3) {
+      inputs.current[index + 1].focus();
+    }
+  };
+
+  const resendCode = () => {
+    // Logic resend code
+    console.log('Kirim ulang kode...');
+  };
+
+  return (
+    <View style={styles.container}>
+      {/* Logo dan judul */}
+      <View style={styles.header}>
+        <Image source={require('./assets/logo.png')} style={styles.logo} />
+        <Text style={styles.brandText}>AyoBlajar</Text>
+      </View>
+
+      {/* Teks dan input */}
+      <Text style={styles.instruction}>Masukan kode verifikasi</Text>
+
+      <View style={styles.otpContainer}>
+        {otp.map((digit, index) => (
+          <TextInput
+            key={index}
+            ref={(ref) => inputs.current[index] = ref}
+            style={styles.otpInput}
+            keyboardType="number-pad"
+            maxLength={1}
+            onChangeText={(text) => handleChange(text, index)}
+            value={digit}
+          />
+        ))}
+      </View>
+
+      {/* Tautan kirim ulang */}
+      <TouchableOpacity onPress={resendCode}>
+        <Text style={styles.resendText}>
+          kirim ulang kode? <Text style={{ color: '#1E40AF' }}>kirim ulang</Text>
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    paddingTop: 80,
+    alignItems: 'center',
+  },
+  header: {
+    backgroundColor: '#14124F',
+    width: '100%',
+    alignItems: 'center',
+    paddingVertical: 30,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  logo: {
+    width: 40,
+    height: 40,
+    marginBottom: 8,
+  },
+  brandText: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    color: '#ffffff',
+  },
+  instruction: {
+    marginTop: 30,
+    fontSize: 16,
+    color: '#000',
+  },
+  otpContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
+    gap: 10,
+  },
+  otpInput: {
+    borderBottomWidth: 2,
+    borderColor: '#999',
+    width: 40,
+    textAlign: 'center',
+    fontSize: 20,
+  },
+  resendText: {
+    marginTop: 25,
+    fontSize: 14,
+    color: '#444',
+  },
+});
