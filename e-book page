@@ -1,0 +1,119 @@
+import React from 'react';
+import { View, Text, StyleSheet, TextInput, ScrollView, Image, TouchableOpacity } from 'react-native';
+
+export default function EBookScreen() {
+  return (
+    <ScrollView style={styles.container}>
+      {/* Search Bar */}
+      <TextInput style={styles.searchBar} placeholder="Search" />
+
+      {/* Mata Pelajaran */}
+      <View style={styles.subjectsRow}>
+        <Subject icon="fx" label="Matematika" />
+        <Subject icon="🧲" label="Fisika" />
+        <Subject icon="🧪" label="Kimia" />
+        <Subject icon="📘" label="Bahasa Indonesia" />
+      </View>
+
+      {/* Sedang Dibaca */}
+      <Text style={styles.sectionTitle}>Sedang di baca</Text>
+      <View style={styles.nowReadingCard}>
+        <Image
+          source={{ uri: 'https://images.unsplash.com/photo-1609250292153-8b305032b2df' }}
+          style={styles.nowReadingImage}
+        />
+        <View style={styles.nowReadingText}>
+          <Text style={{ fontWeight: 'bold' }}>Bahasa Indonesia</Text>
+          <Text style={{ fontSize: 12, color: '#555' }}>Ejaan PEUEBI</Text>
+          <View style={styles.progressBarContainer}>
+            <View style={styles.progressBarBackground}>
+              <View style={styles.progressBarFill} />
+            </View>
+            <Text style={styles.progressText}>25%</Text>
+          </View>
+        </View>
+      </View>
+
+      {/* E-Book Section */}
+      <Text style={styles.sectionTitle}>E-Book</Text>
+      {eBooks.map((book, index) => (
+        <View key={index} style={styles.bookCard}>
+          <Image source={{ uri: book.image }} style={styles.bookImage} />
+          <View style={styles.bookText}>
+            <Text style={{ fontWeight: 'bold' }}>{book.title}</Text>
+            <Text style={{ fontSize: 12 }}>{book.desc}</Text>
+          </View>
+        </View>
+      ))}
+    </ScrollView>
+  );
+}
+
+function Subject({ icon, label }) {
+  return (
+    <View style={styles.subjectIcon}>
+      <Text style={{ fontSize: 24 }}>{icon}</Text>
+      <Text style={{ fontSize: 12 }}>{label}</Text>
+    </View>
+  );
+}
+
+const eBooks = [
+  {
+    title: 'Matematika vol : 1',
+    desc: 'Pemecahan sin cos tan',
+    image: 'https://images.unsplash.com/photo-1581090700227-1c9c3786b8b7',
+  },
+  {
+    title: 'Fisika vol 2',
+    desc: 'Arus listrik - Kuat arus dan Voltase',
+    image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f',
+  },
+  {
+    title: 'Kimia : vol 14',
+    desc: 'Teori Molekular Atom',
+    image: 'https://images.unsplash.com/photo-1596495577886-d920f1fb7238',
+  },
+];
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 16, backgroundColor: '#eee' },
+  searchBar: { borderWidth: 1, borderRadius: 10, padding: 8, marginBottom: 10 },
+  subjectsRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
+  subjectIcon: { alignItems: 'center', width: '22%', backgroundColor: '#fff', padding: 10, borderRadius: 10 },
+  sectionTitle: { fontSize: 16, fontWeight: 'bold', marginBottom: 10 },
+  nowReadingCard: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+    alignItems: 'center',
+  },
+  nowReadingImage: { width: 70, height: 90, borderRadius: 6, marginRight: 12 },
+  nowReadingText: { flex: 1 },
+  progressBarContainer: { marginTop: 8 },
+  progressBarBackground: {
+    width: '100%',
+    height: 10,
+    backgroundColor: '#ddd',
+    borderRadius: 5,
+    overflow: 'hidden',
+  },
+  progressBarFill: {
+    width: '25%',
+    height: '100%',
+    backgroundColor: 'orange',
+  },
+  progressText: { fontSize: 10, color: '#444', marginTop: 4 },
+  bookCard: {
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 12,
+    alignItems: 'center',
+  },
+  bookImage: { width: 60, height: 80, borderRadius: 6, marginRight: 10 },
+  bookText: { flex: 1 },
+});
